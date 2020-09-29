@@ -89,6 +89,7 @@ a {
 	color: #ce1f00;
 	width: 30px;
 	max-height: 25px;
+	text-align: right;
 }
 
 .totalTr {
@@ -97,6 +98,8 @@ a {
 	color: #033363;
 	width: 30px;
 	max-height: 25px;
+	text-align: right;
+
 }
 
 .pontosTr {
@@ -105,6 +108,7 @@ a {
 	color: #1867b6;
 	width: 30px;
 	max-height: 25px;
+	text-align: right;
 }
 
 .btTarefa {
@@ -144,7 +148,7 @@ a {
 /* --------------- modal para a entrada da entrega de tarefa ------------ */
 .textoEntrega{
 	font-family:Arial;
-	font-size:10px;
+	font-size:12px;
 	font-weight:bold;
 	text-align: center;
 	/*line-height:0; */
@@ -286,10 +290,12 @@ a {
 
 .modalTarefaAluno {
 	background: white;
-	width: 20%;
-	height: 55%;
-	min-height: 250px;
-	min-width: 200px;
+	/* width: 20%; */
+	/* height: 55%; */
+	min-height: 230px;
+	min-width: 220px;
+	max-height: 230px;
+	max-width: 220px;
 	padding: 5px;
 	border: 5px solid #378de5;
 	box-shadow: 0,0,0,10px #63B8EE;

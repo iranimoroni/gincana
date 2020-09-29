@@ -45,8 +45,8 @@
   <div id="modal-tarefaAluno" class="modal-container">
     <div class="modalTarefaAluno">
 
-        <p id="alunoTarefa" class="textoEntrega">--------</p>
-        <p id="dataTarefa" class="textoEntrega">---------</p>
+        <div id="alunoTarefa" class="textoEntrega">--------</div>
+        <div id="dataTarefa" class="textoEntrega">---------</div>
         <label>Entrega: </label>                             
         <input type="date" class="formulario1" id="dataTarefaAluno">
     
@@ -88,12 +88,20 @@
 
       <label>Data da solicitação:</label>                             
       <input type="date" class="formulario1" id="tarefaTurmaData">
-      <label>Código da Habilidade: &nbsp &nbsp </label><button>?</button>                             
-      <input type="text" class="formulario1" id="tarefaTurmaHabilidade">
+      <!-- <label>Código da Habilidade: &nbsp &nbsp </label><button>?</button>                             
+      <input type="text" class="formulario1" id="tarefaTurmaHabilidade"> -->
+      
       <label>Descrição da Tarefa: </label>                             
-      <input type="text" class="formulario1" id="tarefaTurmaDescricao">
+      <!-- <input type="text" class="formulario1" id="tarefaTurmaDescricao"> -->
+      <textarea id="tarefaTurmaDescricao" class="formulario1"
+          rows="2" cols="33">
+      </textarea>
+     
       <label>Observação: </label>                             
-      <input type="text" class="formulario1" id="tarefaTurmaObs">
+      <!-- <input type="text" class="formulario1" id="tarefaTurmaObs"> -->
+      <textarea id="tarefaTurmaObs" class="formulario1"
+          rows="2" cols="33">
+      </textarea>
      
       <div class="alinhaLinha">
         <button id="btLimpaTarefa" class="btPqBase btVermelho excluiTarefaTurma">Limpar</button>
@@ -295,7 +303,7 @@
       tarefaTurmaId = 0
       //var url = '/tarefaNova';
       document.getElementById("tarefaTurmaData").value = "";
-      document.getElementById("tarefaTurmaHabilidade").value = "";
+      //document.getElementById("tarefaTurmaHabilidade").value = "";
       document.getElementById("tarefaTurmaDescricao").value = "";
       document.getElementById("tarefaTurmaObs").value = "";
       document.getElementById("modal-tarefaTurma").classList.add("mostrar");
@@ -323,7 +331,7 @@
         }
       }).done(function(tarefaVer){
         document.getElementById("tarefaTurmaData").value = tarefaVer[0].dataPedida;
-        document.getElementById("tarefaTurmaHabilidade").value = tarefaVer[0].habilidade;
+        //document.getElementById("tarefaTurmaHabilidade").value = tarefaVer[0].habilidade;
         document.getElementById("tarefaTurmaDescricao").value = tarefaVer[0].descricao;
         document.getElementById("tarefaTurmaObs").value = tarefaVer[0].obs;
         document.getElementById("modal-tarefaTurma").classList.add("mostrar");
@@ -353,7 +361,7 @@
         //  habilidade,
         //  obs,
         var dataPedida = document.getElementById("tarefaTurmaData").value;
-        var habilidade = document.getElementById("tarefaTurmaHabilidade").value;
+        //var habilidade = document.getElementById("tarefaTurmaHabilidade").value;
         var descricao = document.getElementById("tarefaTurmaDescricao").value;
         var obs = document.getElementById("tarefaTurmaObs").value;
         var turmaId = parseInt(document.getElementById("idTurmaATual").title,10);
@@ -367,7 +375,8 @@
           url: url, //selecionando o endereço que iremos acessar no backend
           type: 'POST', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
           dataType: "json",//Tipo de dado que será enviado ao servidor
-          data: {"dataPedida":dataPedida, "descricao":descricao,"habilidade":habilidade,"obs":obs, "idTurma":turmaId}, 
+          //data: {"dataPedida":dataPedida, "descricao":descricao,"habilidade":habilidade,"obs":obs, "idTurma":turmaId}, 
+          data: {"dataPedida":dataPedida, "descricao":descricao,"obs":obs, "idTurma":turmaId}, 
           error: function(err){
             //Em caso de erro
             console.log(err);

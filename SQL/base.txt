@@ -1,0 +1,1 @@
+=CONCATENAR("INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('";A8;"','";C8;"','2E Ezilda','15');")
