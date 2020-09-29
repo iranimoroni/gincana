@@ -1,0 +1,31 @@
+{
+  "name": "gincana",
+  "version": "1.0.0",
+  "description": "gincana Ezilda",
+  "main": "serv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iranimoroni/gincana.git"
+  },
+  "author": "Moroni Pedrosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iranimoroni/gincana/issues"
+  },
+  "homepage": "https://github.com/iranimoroni/gincana#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.2",
+    "consign": "^0.1.6",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "mysql2": "^2.2.5",
+    "popper.js": "^1.16.1",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
