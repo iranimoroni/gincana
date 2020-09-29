@@ -1,0 +1,18 @@
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('1','ALINE CRISTINA BELAU DOS SANTOS DA SILVA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('2','ANNY GABRIELY DA SILVA CARVALHO SOUSA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('3','BRAYAN PEREIRA DA SILVA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('4','CAMILLY VITORIA FRANCO DA SILVA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('5','DIEGO BUENO SANTOS','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('6','ISABELLY IDALINA FRANCA DA SILVA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('7','JEAN CLAUDIO MARCONDES BURGO','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('8','JULIA PEREIRA NOGUEIRA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('9','KEROLLYN VICTORIA CAMPOS DE SOUZA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('10','KEYLLA EDWIGES PEREIRA CAVALCANTE','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('11','LEONARDO MANOEL CONCEICAO DA SILVA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('12','LUCAS EDUARDO ROMEIRO SANTOS','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('13','MIGUEL SILVA DE OLIVEIRA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('14','NYCOLLAS RAFAEL DE MENEZES MARQUES','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('15','PAULO CESAR DE SOUSA GARCIA','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('16','PEDRO HENRIQUE DO CARMO RODRIGUES','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('17','RAISSA SETUBAL DOS SANTOS','5G Ezilda','23');
+INSERT INTO `escola04gin`.`alunos` (`numero`,`nome`,`turma`,`idTurma`) VALUES ('18','YASMIN DE QUEIROZ BARBOSA','5G Ezilda','23');
