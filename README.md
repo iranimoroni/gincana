@@ -1,6 +1,2 @@
 "# gincana" 
-"# gincana" 
-"# gincana" 
-"# gincana" 
-"# gincana" 
-"# gincana" 
+
