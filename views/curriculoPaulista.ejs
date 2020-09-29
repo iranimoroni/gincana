@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listagem de habilidades</title>
+
+  <link rel='stylesheet' href="/public/stylesheets/style.css" />
+<!--  <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+  <script src="/public/javascripts/jquery-3.5.1.min.js"></script>   -->
+  
+</head>
+
+  <body> <!-- onload='window.history.back();'> -->
+    <h1 id="topoHabilidade">Consulta das Habilidades</h1>
+    <div class="alinhaEsquerda">
+      <select id="buscaCurriculoPor" class="formulario2">
+        <option value="linguagem">Linguagem</option>
+        <option value="codigo">Código</option>
+        <option value="descricao">Descrição</option>
+        <option value="conhecimento">Conhecimento</option>
+      </select>
+      <input type="text" class="formulario2" id="buscaCurriculoTexto">
+      <button id="btBuscaHabilidade" class="btPqBase btAzul" onclick="buscaHabilidade()">Buscar</button>
+      <button id="btVolta" class="btPqBase btLaranja" onclick="window.location.href = '/'">Voltar</button>
+    </div>
+    <table class="zebra">
+      <thead>
+          <tr>
+              <th>Linguagem</th>
+              <th>Ano</th>
+              <th>Habilidade   </th>
+              <th>Descrição</th>
+              <th>Conhecimento</th>
+          </tr>
+      </thead>
+      <tbody>
+      <% for(let item of dadosDasHabilidades) { %>
+          <tr>
+            <td><%= item.linguagem %></td>
+            <td><%= item.ano %></td>
+            <td><button name: teste><%= item.habilidadeCod %></button></td>
+            <td><%= item.habilidadeDesc %></td>
+            <td><%= item.conhecimento %></td>
+          </tr>
+      <% } %>
+      </tbody>
+  </table>
+<script>
+
+    // -------------------------------------------------------------------------
+    // Função para definir o campo de busca das habilidades
+    //
+    function buscaHabilidade(){
+      var url = '/habilidades';
+      var busca = document.getElementById("buscaCurriculoTexto").value;
+      if (busca !=""){
+        url = '/habilidades/' + document.getElementById("buscaCurriculoPor").value 
+              + '/' + busca;
+      }
+      //####################### esta abordagem NÃO FUNCIONA #######################
+      // $.ajax({
+      //   url: url, //selecionando o endereço que ira acessar no backend
+      //   type: 'GET', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+      //   dataType: "json",//Tipo de dado que será enviado ao servidor
+      //   error: function(err){
+      //    //Em caso de erro
+      //     console.log(err);
+      //     return false;
+      //   }
+      // }).done(function(retornou){
+      //        window.location.reload()
+      // });
+      //####################### esta abordagem NÃO FUNCIONA #######################
+      window.location.href = url;
+      return true;
+     }
+    // -------------------------------------------------------------------------
+</script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <link rel='stylesheet' href="../public/stylesheets/style.css" />
+    <link rel='stylesheet' href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <script src="/public/javascripts/jquery-3.5.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <ul class="linhaSerie">
+        <li class="btTurmaBase btTurmaE1" id="btTurma01">Ezilda 1 A</li>
+        <li class="btTurmaBase btTurmaE1" id="btTurma02">Ezilda 1 B</li>
+        <li class="btTurmaBase btTurmaE1" id="btTurma03">Ezilda 1 C</li>
+        <li class="btTurmaBase btTurmaE1" id="btTurma04">Ezilda 1 D</li>
+        <li class="btTurmaBase btTurmaE1" id="btTurma05">Ezilda 1 E</li>
+        <li class="btTurmaBase btTurmaE1" id="btTurma06">Ezilda 1 F</li>
+    </ul>
+    <ul class="linhaSerie">
+        <li class="btTurmaBase btTurmaE2" id="btTurma07">Ezilda 2 G</li>
+        <li class="btTurmaBase btTurmaE2" id="btTurma08">Ezilda 2 H</li>
+        <li class="btTurmaBase btTurmaE2" id="btTurma09">Ezilda 2 I</li>
+    </ul>
+    <ul class="linhaSerie">
+        <li class="btTurmaBase btTurmaE3" id="btTurma10">Ezilda 3 A</li>
+        <li class="btTurmaBase btTurmaE3" id="btTurma11">Ezilda 3 B</li>
+    </ul>
+    <ul class="linhaSerie">
+        <li class="btTurmaBase btTurmaE5" id="btTurma12">Ezilda 5 A</li>
+        <li class="btTurmaBase btTurmaE5" id="btTurma13">Ezilda 5 B</li>
+        <li class="btTurmaBase btTurmaE5" id="btTurma14">Ezilda 5 C</li>
+    </ul>
+    <ul class="linhaSerie">
+        <li class="btTurmaBase btTurmaF4" id="btTurma15">Florisbela 4 A</li>
+        <li class="btTurmaBase btTurmaF5" id="btTurma16">Florisbela 5 A</li>
+    </ul>
+    <br>
+    <ul class="linhaSerie">
+        <li class="btBase btLaranja" 
+            id="consultaHabilidade" 
+            onclick="window.location.href = '/habilidades'">
+            Habilidades</li>
+            <li class="btBase btAzul" 
+            id="consultaAlunos" 
+            onclick="window.location.href = '/alunos'">
+            Alunos</li>
+    
+    </ul>
+
+    <script>
+
+    // -------------------------------------------------------------------------
+    // Função para incluir o evento onClick em todos os botoes da classe btTarefa
+    //
+    const botao = document.querySelectorAll('.btTurmaBase');
+    for (var i = 0; i < botao.length; i++) {
+      const textox = document.getElementById(botao[i].id).id;
+      const turmaX = parseInt(textox.substr(7,2), 10);
+      botao[i].addEventListener("click",(e) => { 
+        window.location.href = "/tarefasAlunos/"+ turmaX;
+      });
+    }
+    // -------------------------------------------------------------------------
+
+
+
+    // // -------------------------------------------------------------------------
+    // // Função para chamar a listagem de alunos e tarefas
+    // //
+    // $(document).ready(function(){
+    //   $('.btTurmaBase').on('click',function(){
+    //     alert("clicou")
+    //     var url = '/tarefasAlunos/1'//+ entregaid;
+    //     $.ajax({
+    //       url: url, //selecionando o endereço que iremos acessar no backend
+    //       type: 'GET', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+    //       dataType: "json",//Tipo de dado que será enviado ao servidor
+    //       data: {},
+    //       error: function(err){
+    //         //Em caso de erro
+    //         console.log(err);
+    //       }
+    //     //   }).done(function(){
+    //     //     //window.location.reload()
+    //    });
+    //   });
+    // });
+    // // -------------------------------------------------------------------------
+
+
+    </script>
+</body>
+
+</html>

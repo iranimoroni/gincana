@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listagem de Alunos</title>
+
+  <link rel='stylesheet' href="../public/stylesheets/style.css" />
+  <link rel='stylesheet' href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+  <script src="/public/javascripts/jquery-3.5.1.min.js"></script>   
+  
+</head>
+
+<body>
+  
+<!-- 
+  //A diferença entre os dois modos é que 
+  //<o/°- variavel o/°> interpreta códigos HTML, enquanto 
+  //<o/°= variavel o/°> não.
+-->
+  <!-- --------------------------------------------------------------- -->
+  <!-- Apresentação da tabela conforme dados recebidos em              -->
+  <!-- topoTabela e dadosGerais                                        -->
+  <div class="textoTopo1"><%- turmaTarefas %></div>
+  <div >
+    <button id="btNovaTarefa" class="btPqBase btAzul" 
+      onclick= "window.location.href = '/'">Turmas</button>
+    <button id="btNovaTarefa" class="btPqBase btLaranja" 
+      onclick="abreTarefaNova()">Nova Tarefa</button>
+  </div>
+  <table>
+    <thead>
+      <tr><%- topoTabela %></tr>
+    </thead>
+    <tbody>
+      <%- dadosGerais %>
+    </tbody>
+  </table>
+  <!-- --------------------------------------------------------------- -->
+  
+  <!-- --------------------------------------------------------------- -->
+  <!-- modal para entrada/visualização dos dados da entrega da tarefa  -->
+  <!--                                                                 -->
+  <div id="modal-tarefaAluno" class="modal-container">
+    <div class="modalTarefaAluno">
+
+        <p id="alunoTarefa" class="textoEntrega">--------</p>
+        <p id="dataTarefa" class="textoEntrega">---------</p>
+        <label>Entrega: </label>                             
+        <input type="date" class="formulario1" id="dataTarefaAluno">
+    
+        <!--<label style="line-height:0;" >Nota..: </label>                         
+        <input type="text" label="Nota" class="s"  name="xconceito">-->
+        
+        <label>Conceito:</label>
+         <select id="conceitoTarefaAluno" class="formulario1" name="conceito">
+          <option value="1">1 - Inválido</option>
+          <option value="2">2 - Péssimo</option>
+          <option value="3">3 - Muito Ruim</option>
+          <option value="4">4 - Fraco</option>
+          <option value="5">5 - Regular</option>
+          <option value="6">6 - Bom</option>
+          <option value="7">7 - Muito Bom</option>
+          <option value="8">8 - Ótimo</option>
+          <option value="9">9 - Exelente</option>
+          <option value="10">10 - Perfeito</option>
+        </select>
+    
+      
+      <div class="alinhaLinha">
+        <button id="btLimpa" class="btPqBase btVermelho excluiTarefaAluno">Limpar</button>
+        <button id="btGrava" class="btPqBase btAzul editaAlteraTarefaAluno">Gravar</button>
+        <button id="btCancela" class="btPqBase btVerde" 
+        onclick="fechaTarefaAluno()">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+  <!-- --------------------------------------------------------------- -->
+ 
+
+  <!-- --------------------------------------------------------------- -->
+  <!-- modal para entrada/visualização dos dados da tarefa para a turma-->
+  <!--                                                                 -->
+  <div id="modal-tarefaTurma" class="modal-container">
+    <div class="modalTarefaTurma">
+
+      <label>Data da solicitação:</label>                             
+      <input type="date" class="formulario1" id="tarefaTurmaData">
+      <label>Código da Habilidade: &nbsp &nbsp </label><button>?</button>                             
+      <input type="text" class="formulario1" id="tarefaTurmaHabilidade">
+      <label>Descrição da Tarefa: </label>                             
+      <input type="text" class="formulario1" id="tarefaTurmaDescricao">
+      <label>Observação: </label>                             
+      <input type="text" class="formulario1" id="tarefaTurmaObs">
+     
+      <div class="alinhaLinha">
+        <button id="btLimpaTarefa" class="btPqBase btVermelho excluiTarefaTurma">Limpar</button>
+        <button id="btGravaTarefa" class="btPqBase btAzul editaAlteraTarefaTurma">Gravar</button>
+        <button id="btCancelaTarefa" class="btPqBase btVerde" 
+        onclick="fechaTarefaTurma()">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+  <!-- --------------------------------------------------------------- -->
+ 
+
+  <script>
+    //--------------------------------------------------------------------------
+    // Variaveis Globais
+    //
+    var alunoIdTxt = "";
+    var alunoId = 0;
+    var tarefaIdAlunoTxt = "";
+    var tarefaIdAluno = 0;
+    var tarefaTurmaIdTxt = "";
+    var tarefaTurmaId = 0;
+    var entregaIdTxt = "";
+    var turmaIdTxt = "";
+    var turmaId = 0;
+    var dataTarefaAntiga = "";
+    // -------------------------------------------------------------------------
+
+//==============================================================================
+// FUNÇÕES GERAIS
+    // -------------------------------------------------------------------------
+    // Função para alterar formato da data de yyyy-mm-dd para dd/mm/yyyy
+    //
+    function toDate(dateStr) {
+      // var parts = dateStr.split("/");
+      // return (parts[2] +"-" + parts[1] +"-" + parts[0]);
+      return dateStr.split('/').reverse().join('-');
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para alterar formato da data do dd/mm/yyyy para yyyy-mm-dd
+    //
+    function dateOk(date){	
+	    return date.split('-').reverse().join('/');
+    }
+    // -------------------------------------------------------------------------
+    
+    // // -------------------------------------------------------------------------
+    // // Função para retornar a tela inicial
+    // //
+    // function retornaTurmas(){	
+    //   window.location.href = "/";                       
+	  //   return true;
+    // }
+    // // -------------------------------------------------------------------------
+// FUNÇÕES GERAIS - FIM -
+//==============================================================================
+
+//==============================================================================
+// FUNÇÕES PARA TAREFAS ENTREGUES POR ALUNOS 
+  
+    // -------------------------------------------------------------------------
+    // Função para incluir o evento onClick em todos os botoes da classe btTarefa
+    //                                                                   (aluno)
+    const botao = document.querySelectorAll('.btTarefa');
+    for (var i = 0; i < botao.length; i++) {
+      const textox = document.getElementById(botao[i].id).innerText;
+      // botao[i].classList.add('red'); para adicionar outras classes
+      botao[i].addEventListener("click",(e) => {
+        abreTarefaAluno(textox,e.target.id);
+      });
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para mostrar o modal de entrada de data e conceito
+    // quando o botão referente a tarefa na tabela for clicado
+    //
+    function abreTarefaAluno (textox,btId){
+      // textox => id do botão AnnnnnTnnnnninnnnnx
+      alunoIdTxt = btId.substr(1,5);
+      tarefaIdAlunoTxt = btId.substr(7,5);
+      entregaIdTxt = btId.substr(13,5);
+      
+      alunoId = parseInt(alunoIdTxt, 10);
+      tarefaIdAluno = parseInt(tarefaIdAlunoTxt, 10);
+      entregaId = parseInt(entregaIdTxt, 10);    
+        
+      alunoidElement = "idANm" + alunoIdTxt;
+      tarefaDataElement = "idT" + tarefaIdAlunoTxt;
+
+      document.getElementById("alunoTarefa").innerText = document.getElementById(alunoidElement).innerText
+      document.getElementById("dataTarefa").innerText = document.getElementById(tarefaDataElement).innerText
+      if (textox.match("Entregue")) {
+        document.getElementById("dataTarefaAluno").value =" Não Entregou ";
+        document.getElementById("conceitoTarefaAluno").value ="";
+      } else {
+        document.getElementById("dataTarefaAluno").value = toDate(textox.substr(0,10));
+        document.getElementById("conceitoTarefaAluno").value = textox.substr(13,2).trim();
+        console.log("-",textox.substr(13,2).trim(),"-");
+//        document.getElementById("conceitoTarefaAluno").value = textox.substr(13,2);
+      }
+      document.getElementById("modal-tarefaAluno").classList.add("mostrar");
+    }
+    // -------------------------------------------------------------------------
+    
+    // -------------------------------------------------------------------------
+    // Função para fechar o modal de entrada de data e conceito
+    //
+    function fechaTarefaAluno (){
+      document.getElementById("modal-tarefaAluno").classList.remove("mostrar");
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para gravar os dados da tarefa entregue
+    //
+    $(document).ready(function(){
+      $('.editaAlteraTarefaAluno').on('click',function(){
+        var dataentrega = document.getElementById("dataTarefaAluno").value;
+        var conceito = parseInt(document.getElementById("conceitoTarefaAluno").value, 10);
+        var url = '/tarefaAluno';
+        let grava = true;
+        if ( isNaN(conceito) || conceito <=0 || conceito > 10) {
+          alert("conceito inválido " + conceito);
+          grava = false;
+        }
+        if (grava) {
+          if (entregaId != 0) {
+            url = url + "/" + entregaId;
+          }
+          $.ajax({
+            url: url, //selecionando o endereço que iremos acessar no backend
+            type: 'POST', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+            dataType: "json",//Tipo de dado que será enviado ao servidor
+            data: {"obs":"pelo sistema", "dataEntrega":dataentrega,"conceito":conceito,"idAluno":alunoId,"idTarefa":tarefaIdAluno}, // { itens: [ { dataEntrega: '1920-02-02', obs: 'CONSEGUI' } ] }
+            error: function(err){
+              //Em caso de erro
+              console.log(err);
+            }
+          }).done(function(){
+            window.location.reload()
+          });
+        }
+      });
+    });
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para excluir os dados de uma tarefa entregue por um aluno
+    //
+    $(document).ready(function(){
+      $('.excluiTarefaAluno').on('click',function(){
+        var url = '/tarefaAluno/'+ entregaId;
+        var apaga=confirm("Deseja realmente apagar esta tarefa?");
+        if (apaga) {
+          $.ajax({
+            url: url, //selecionando o endereço que iremos acessar no backend
+            type: 'DELETE', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+            dataType: "json",//Tipo de dado que será enviado ao servidor
+            data: {},
+            error: function(err){
+              //Em caso de erro
+              console.log(err);
+            }
+          }).done(function(){
+            window.location.reload()
+          });
+        };
+      });
+    });
+    // -------------------------------------------------------------------------
+// FUNÇÕES PARA TAREFAS ENTREGUES POR ALUNOS - FIM -
+//==============================================================================
+
+//==============================================================================
+// FUNÇÕES PARA TAREFAS DESIGNADAS PARA A TURMA 
+
+    // -------------------------------------------------------------------------
+    // Função para incluir o evento onClick em todos os botoes da classe dataTarefaTurma
+    //
+    const botaoDt = document.querySelectorAll('.dataTarefaTurma');
+    for (var i = 0; i < botaoDt.length; i++) {
+      const textoDt = document.getElementById(botaoDt[i].id).innerText;
+      botaoDt[i].addEventListener("click",(e) => {
+        abreTarefa(textoDt,e.target.id);
+      });
+    }
+    // -------------------------------------------------------------------------
+    
+    // -------------------------------------------------------------------------
+    // Função para mostrar o modal de dados da tarefa designada para a turma
+    // abrindo uma nova tarefa
+    //
+    function abreTarefaNova(textoDt,btId){
+      tarefaTurmaIdTxt = "";
+      tarefaTurmaId = 0
+      //var url = '/tarefaNova';
+      document.getElementById("tarefaTurmaData").value = "";
+      document.getElementById("tarefaTurmaHabilidade").value = "";
+      document.getElementById("tarefaTurmaDescricao").value = "";
+      document.getElementById("tarefaTurmaObs").value = "";
+      document.getElementById("modal-tarefaTurma").classList.add("mostrar");
+      
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para mostrar o modal de dados da tarefa designada para a turma
+    // quando a data referente a tarefa for clicada
+    //
+    function abreTarefa(textoDt,btId){
+      tarefaTurmaIdTxt = btId.substr(3,5);
+      tarefaTurmaId = parseInt(tarefaTurmaIdTxt, 10);
+      var url = '/tarefa/' + tarefaTurmaId;
+//      console.log(tarefaTurmaIdTxt);
+      $.ajax({
+        url: url, //selecionando o endereço que ira acessar no backend
+        type: 'GET', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+        dataType: "json",//Tipo de dado que será enviado ao servidor
+        error: function(err){
+         //Em caso de erro
+          console.log(err);
+          return false;
+        }
+      }).done(function(tarefaVer){
+        document.getElementById("tarefaTurmaData").value = tarefaVer[0].dataPedida;
+        document.getElementById("tarefaTurmaHabilidade").value = tarefaVer[0].habilidade;
+        document.getElementById("tarefaTurmaDescricao").value = tarefaVer[0].descricao;
+        document.getElementById("tarefaTurmaObs").value = tarefaVer[0].obs;
+        document.getElementById("modal-tarefaTurma").classList.add("mostrar");
+        dataTarefaAntiga = tarefaVer[0].dataPedida;
+        //alert(" dataPedida: " + dateOk(tarefaVer[0].dataPedida) + 
+        //      "\n OBS -------> " + tarefaVer[0].obs);
+        return true;
+      });
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para fechar o modal de edição da tarefa designada para a turma
+    //
+    function fechaTarefaTurma (){
+      document.getElementById("modal-tarefaTurma").classList.remove("mostrar");
+    }
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para gravar os dados da tarefa designada para a turma
+    //
+    $(document).ready(function(){
+      $('.editaAlteraTarefaTurma').on('click',function(){
+        //  dataPedida,
+        //  descricao,
+        //  habilidade,
+        //  obs,
+        var dataPedida = document.getElementById("tarefaTurmaData").value;
+        var habilidade = document.getElementById("tarefaTurmaHabilidade").value;
+        var descricao = document.getElementById("tarefaTurmaDescricao").value;
+        var obs = document.getElementById("tarefaTurmaObs").value;
+        var turmaId = parseInt(document.getElementById("idTurmaATual").title,10);
+//        alert(turmaId);
+        if (tarefaTurmaId != 0) {
+          var url = "/tarefaEdita/" + tarefaTurmaId;
+        } else {
+          var url = "/tarefaNova" 
+        };
+        $.ajax({
+          url: url, //selecionando o endereço que iremos acessar no backend
+          type: 'POST', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+          dataType: "json",//Tipo de dado que será enviado ao servidor
+          data: {"dataPedida":dataPedida, "descricao":descricao,"habilidade":habilidade,"obs":obs, "idTurma":turmaId}, 
+          error: function(err){
+            //Em caso de erro
+            console.log(err);
+          }
+        }).done(function(){
+          document.getElementById("modal-tarefaTurma").classList.remove("mostrar");
+          if (dataTarefaAntiga != dataPedida) {
+            window.location.reload();
+          };
+        });
+      });
+    });
+    // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para excluir os dados de uma tarefa designada para a turma
+    //
+    $(document).ready(function(){
+      $('.excluiTarefaTurma').on('click',function(){
+        var url = '/tarefaExclui/'+ tarefaTurmaId;
+        var apaga=confirm("Deseja realmente apagar e tarefa  pedida em " + dateOk(dataTarefaAntiga) +"?");
+        if (apaga) {
+          $.ajax({
+            url: url, //selecionando o endereço que iremos acessar no backend
+            type: 'DELETE', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+            dataType: "json",//Tipo de dado que será enviado ao servidor
+            data: {},
+            error: function(err){
+              //Em caso de erro
+              console.log(err);
+            }
+          }).done(function(){
+            document.getElementById("modal-tarefaTurma").classList.remove("mostrar");
+            window.location.reload()
+          }).fail(function(){
+            document.getElementById("modal-tarefaTurma").classList.remove("mostrar");
+            alert("Desculpe. Não é possivel excluir esta tarefa por\n" 
+                + "constarem entregas de alunos relativas a mesma. \n\n" 
+                + "Por favor, exclua primeiro as entregas.\n");
+          });
+        };
+      });
+    });
+    // -------------------------------------------------------------------------
+
+  </script>
+
+</body>
+
+</html>

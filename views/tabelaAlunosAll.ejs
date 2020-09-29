@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listagem de Alunos</title>
+
+  <link rel='stylesheet' href="/public/stylesheets/style.css" />
+<!--  <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.css" /> -->
+  
+</head>
+
+  <body>
+    <h1 id="topoAluno">Consulta Aluno</h1>
+    <div class="alinhaEsquerda">
+      Parte do nome: <input type="text" class="formulario2" id="buscaAlunoNome">
+      <button id="btBuscaAluno" class="btPqBase btAzul" onclick="buscaAluno()">Buscar</button>
+      <button id="btVolta" class="btPqBase btLaranja" onclick="window.location.href = '/'">Voltar</button>
+    </div>  
+    <table class="zebra">
+      <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Numero   </th>
+              <th>Turma</th>
+          </tr>
+      </thead>
+      <tbody>
+      <% for(let item of dadosDosAlunos) { %>
+          <tr>
+            <td><%= item.nome %></td>
+            <td><%= item.numero %></td>
+            <td><a href="/tarefasAlunos/<%= item.idTurma %>"><button class="btPqBase btAzul" ><%= item.turma %></button></a></td>
+          </tr>
+      <% } %>
+      </tbody>
+  </table>
+<script>
+
+    // -------------------------------------------------------------------------
+    // Função para definir o nome do aluno a ser buscado
+    //
+    function buscaAluno(){
+      var url = '/alunos';
+      var busca = document.getElementById("buscaAlunoNome").value;
+      if (busca !=""){
+        url = '/alunos/' + busca;
+      }
+      window.location.href = url;
+      return true;
+     }
+    // -------------------------------------------------------------------------
+</script>
+  </body>
+</html>

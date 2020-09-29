@@ -1,0 +1,463 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #00B7FF;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 90%;
+    padding: 10px;
+    margin: 30px;
+  }
+  th, td {
+    padding: 0.25rem;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  tbody tr:nth-child(odd) {
+    background: #eee;
+  }
+    
+/* -------------- Listagem de alunos e tarefas por turma ---------------- */
+
+.textoTopo1{
+	color: #770303;
+	font-weight:bold;
+	text-align: left;
+	font-size:18px;
+}
+
+.dataTarefaTurma{  
+	cursor:pointer;
+	font-weight:bold;
+	color: #0f0536;
+}
+
+.dataTarefaTurma:hover{
+	color: #528ecc;
+	background-color:#0f0536;
+}
+
+.linhaClara {
+	border: 0;
+  	border-top: 1px solid #000;
+	text-align: left;
+	background: #d1dcf1;
+}
+
+.linhaEscura {
+	border: 0;
+  	border-top: 1px solid #000;
+	text-align: left;
+	background: #5990cc;
+}
+
+.alunoNmNrNt{
+	font-family:Arial;
+	font-weight:bold;
+	text-decoration:none;
+	display: inline-block;
+	padding:5px 5px;
+	width: 240px;
+	height: 25px;
+	max-height: 25px;
+}
+
+.alunoNr {
+	font-size:12px;
+	font-weight:bold;
+	width: 20px;
+	height: 25px;
+	max-height: 25px;
+}
+
+.alunoNm {
+	font-size:10px;
+	width: 200px !important;
+	height: 25px;
+	max-height: 25px;
+	min-width: 200px !important;
+}
+
+.mediaTr {
+	font-size:15px;
+	font-weight:bold;
+	color: #ce1f00;
+	width: 30px;
+	max-height: 25px;
+}
+
+.totalTr {
+	font-size:15px;
+	font-weight:bold;
+	color: #033363;
+	width: 30px;
+	max-height: 25px;
+}
+
+.pontosTr {
+	font-size:15px;
+	font-weight:bold;
+	color: #1867b6;
+	width: 30px;
+	max-height: 25px;
+}
+
+.btTarefa {
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:11px;
+	font-weight:bold;
+
+	padding:5px 5px;
+	text-decoration:none;
+    width: 100px;
+    height: 25px;
+
+}
+
+.btComTr{
+	color:#0f0536;
+}
+
+.btComTr:hover {
+	background:linear-gradient(to bottom, #55d619 5%, #a2f09b 100%);
+	background-color:#30ad17;
+}
+
+.btSemTr{
+	color:#aa0000;
+}
+.btSemTr:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+
+
+/* ---------------------------------------------------------------------- */
+
+/* --------------- modal para a entrada da entrega de tarefa ------------ */
+.textoEntrega{
+	font-family:Arial;
+	font-size:10px;
+	font-weight:bold;
+	text-align: center;
+	/*line-height:0; */
+}
+
+.alinhaLinha{
+	display: flex;
+	padding: 10px;
+	align-items: flex-end;
+	justify-content: space-around;
+}
+
+.alinhaEsquerda{
+	display: flex; 
+	text-align: left; 
+	padding: 10px;
+	align-items: flex-end;
+}
+
+.btPqBase {
+	border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:11px;
+	font-weight:bold;
+	padding:2px;
+	margin: 4px;
+	text-decoration:none;
+  width: 80px;
+  height: 30px;
+}
+
+.btPqBase:active {
+	position:relative;
+	top:2px;
+	left:2px;
+}
+
+.btBase {
+	border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 10px;
+	text-decoration:none;
+  width: 150px;
+  height: 40px;
+}
+
+.btBase:active {
+	position:relative;
+	top:3px;
+	left:3px;
+}
+
+.btAzul {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border:2px solid #84bbf3;
+	color:#ffffff;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.btAzul:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+
+.btVermelho {
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+	background-color:#fe1a00;
+	border:2px solid #d83526;
+	color:#ffffff;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.btVermelho:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:#ce0100;
+}
+
+.btVerde {
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	background-color:#77d42a;
+	border:2px solid #268a16;
+	color:#ffffff;
+	text-shadow:0px 1px 0px #aade7c;
+}
+.btVerde:hover {
+	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color:#5cb811;
+}
+
+
+.btLaranja {
+	box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border:1px solid #ffaa22;
+	color:#333333;
+	text-shadow:0px 1px 0px #ffee66;
+}
+.btLaranja:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+
+.modal-container {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,.5);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 3000;
+}
+
+.modal-container.mostrar {
+	display: flex;
+}
+
+@keyframes modalAbre {
+	from{
+		opacity: 0;
+		transform: translate3d(-60px,-30px,0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0,0,0);
+	}
+}
+
+.modalTarefaAluno {
+	background: white;
+	width: 20%;
+	height: 55%;
+	min-height: 250px;
+	min-width: 200px;
+	padding: 5px;
+	border: 5px solid #378de5;
+	box-shadow: 0,0,0,10px #63B8EE;
+	position: relative;
+	font-size:10px;	
+}
+
+.mostrar .modalTarefaAluno {
+	animation: modalAbre .1s;
+}
+
+.modalTarefaTurma {
+	background: white;
+	width: 20%;
+	height: 55%;
+	min-height: 300px;
+	min-width: 200px;
+	padding: 5px;
+	border: 5px solid #378de5;
+	box-shadow: 0,0,0,10px #63B8EE;
+	position: relative;
+	font-size:10px;	
+}
+
+.mostrar .modalTarefaTurma {
+	animation: modalAbre .1s;
+}
+
+
+
+.linhaSerie {
+    color: #FFF;
+    /* text-align: justify; */
+    text-align: center;
+    padding: 10px;
+}
+
+.btTurmaBase {
+    
+	border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 10px;
+	text-decoration:none;
+    width: 130px;
+    height: 40px;
+    box-shadow:inset 0px 0px 0px 2px #082947;
+
+}
+
+.btTurmaBase:hover {
+	background:linear-gradient(to bottom, #e9ece7 5%, #f3c443 100%);
+	background-color:#ffffff;
+}
+
+
+
+.btTurmaE1 {
+    background-color: #95b3d7;
+}
+
+.btTurmaE2 {
+    background-color: #93cddd;
+}
+
+.btTurmaE3 {
+    background-color: #c3d69b;
+}
+
+.btTurmaE5 {
+    background-color: #fac090;
+}
+
+.btTurmaF4 {
+    background-color: #e590fa;
+}
+
+.btTurmaF5 {
+    background-color: #fa90c5;
+}
+
+.formulario1 {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 0.3rem;
+    font-size: .8rem;
+    line-height: 1.25;
+    color: #495057;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.formulario1:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: none;
+}
+
+.formulario1::placeholder {
+    color: #868e96;
+    opacity: 1;
+}
+
+.formulario1:disabled,
+.formulario1[readonly] {
+    background-color: #cacaca;
+    opacity: 1;
+}
+
+.formulario1:hover{
+    background-color: #c9e1fa;
+    border-color: #001f41;
+}
+
+.formulario2 {
+    display: block;
+    width: 200px;
+    padding: 0.3rem 0.3rem;
+    font-size: .8rem;
+    line-height: 1.25;
+    color: #495057;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.formulario2:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: none;
+}
+
+.formulario2::placeholder {
+    color: #868e96;
+    opacity: 1;
+}
+
+.formulario2:disabled,
+.formulario2[readonly] {
+    background-color: #cacaca;
+    opacity: 1;
+}
+
+.formulario2:hover{
+    background-color: #c9e1fa;
+    border-color: #001f41;
+}
+/*  btComTr
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border:2px solid #84bbf3;
+	text-shadow:0px 1px 0px #528ecc;
+*/
+/*  btSemTr
+	box-shadow:inset 0px 1px 0px 0px #ebe3a9;
+	background:linear-gradient(to bottom, #ecead9 5%, #70685b 100%);
+	background-color:#ffec64;
+	border:1px solid #36332e;
+	text-shadow:0px 1px 0px #8b8b88;	
+*/
