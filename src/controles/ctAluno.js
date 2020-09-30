@@ -72,8 +72,6 @@ module.exports = {
     async listaNumero(req, res) {
         try {
             let busca = req.params.id;
-
-
             // erro -> const alunos = await TarefaDia.findAll({raw: true, attributes: ["idAluno","dataPedida"], include: [Aluno.findAll({raw: true, attributes: ["id","nome","numero","idTurma"]})], order: [["dataPedida"]]});
             const alunos = await TarefaAluno.findAll({
                 raw: true,

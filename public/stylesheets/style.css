@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #0f0536;
 }
 
 a {
@@ -23,9 +24,22 @@ a {
   }
     
 /* -------------- Listagem de alunos e tarefas por turma ---------------- */
+.tabelaAlunoTarefas{
+	border-radius:16px;
+	padding: 10px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: #7199f6;
+}
+
+.telaturmas{
+	border-radius:16px;
+	padding: 10px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: #3e67c7;
+}
 
 .textoTopo1{
-	color: #770303;
+	color: #fafbfb;
 	font-weight:bold;
 	text-align: left;
 	font-size:18px;
@@ -167,6 +181,15 @@ a {
 	padding: 10px;
 	align-items: flex-end;
 }
+.alinhaDireita{
+	display: flex; 
+	text-align: right; 
+	padding: 10px;
+	align-items: flex-end;
+}
+.containerTopo{
+	display: flex; 
+}
 
 .btPqBase {
 	border-radius:6px;
@@ -292,9 +315,9 @@ a {
 	background: white;
 	/* width: 20%; */
 	/* height: 55%; */
-	min-height: 230px;
+	min-height: 310px;
 	min-width: 220px;
-	max-height: 230px;
+	max-height: 310px;
 	max-width: 220px;
 	padding: 5px;
 	border: 5px solid #378de5;
@@ -309,10 +332,12 @@ a {
 
 .modalTarefaTurma {
 	background: white;
-	width: 20%;
-	height: 55%;
-	min-height: 300px;
-	min-width: 200px;
+	/* width: 20%; */
+	/* height: 55%; */
+	min-height: 320px;
+	min-width: 230px;
+	max-height: 320px;
+	max-width: 230px;
 	padding: 5px;
 	border: 5px solid #378de5;
 	box-shadow: 0,0,0,10px #63B8EE;

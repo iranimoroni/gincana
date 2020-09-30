@@ -113,6 +113,18 @@ module.exports = {
     
     },
 
+    async buscaTarefaAluno(req, res) {
+        try {
+            let busca = req.params.id;
+            const tarefaDoAluno = await TarefaAluno.findAll({ raw: true, where: { id: busca } });
+            return res.json(tarefaDoAluno);
+        } catch (error) {
+            console.log(error);
+            return res.json("Erro ao listar as tarefas e os alunos");
+        }
+    
+    },
+    
     async tarefaAlunoNova(req, res) {
         try {
             console.log("gravei tarefa do aluno");

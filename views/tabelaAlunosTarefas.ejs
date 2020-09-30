@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  
+<div class="tabelaAlunoTarefas">  
 <!-- 
   //A diferença entre os dois modos é que 
   //<o/°- variavel o/°> interpreta códigos HTML, enquanto 
@@ -22,12 +22,14 @@
   <!-- --------------------------------------------------------------- -->
   <!-- Apresentação da tabela conforme dados recebidos em              -->
   <!-- topoTabela e dadosGerais                                        -->
-  <div class="textoTopo1"><%- turmaTarefas %></div>
-  <div >
-    <button id="btNovaTarefa" class="btPqBase btAzul" 
-      onclick= "window.location.href = '/'">Turmas</button>
-    <button id="btNovaTarefa" class="btPqBase btLaranja" 
+  <div class="alinhaEsquerda">
+    <div class="textoTopo1 alinhaEsquerda"><%- turmaTarefas %></div>
+    <div class="alinhaDireita">
+      <button id="btNovaTarefa" class="btPqBase btLaranja" 
       onclick="abreTarefaNova()">Nova Tarefa</button>
+      <button id="btNovaTarefa" class="btPqBase btAzul" 
+      onclick= "window.location.href = '/'">Turmas</button>
+    </div>
   </div>
   <table>
     <thead>
@@ -55,18 +57,20 @@
         
         <label>Conceito:</label>
          <select id="conceitoTarefaAluno" class="formulario1" name="conceito">
-          <option value="1">1 - Inválido</option>
-          <option value="2">2 - Péssimo</option>
-          <option value="3">3 - Muito Ruim</option>
-          <option value="4">4 - Fraco</option>
-          <option value="5">5 - Regular</option>
-          <option value="6">6 - Bom</option>
-          <option value="7">7 - Muito Bom</option>
-          <option value="8">8 - Ótimo</option>
-          <option value="9">9 - Exelente</option>
-          <option value="10">10 - Perfeito</option>
+          <option value="0">0 - Parcial (menos de 50%)</option>
+          <option value="30">30 - Parcial (mais de 50%)</option>
+          <option value="50">50 - Postado Ok</option>
+          <option value="100">100 - Vencedor</option>
         </select>
-    
+
+        <label>Observação: </label>                             
+        <!-- <input type="text" class="formulario1" id="tarefaTurmaObs"> -->
+        <textarea id="tarefaObsAluno" class="formulario1"
+            rows="3" cols="33">
+        </textarea>
+       
+  
+  
       
       <div class="alinhaLinha">
         <button id="btLimpa" class="btPqBase btVermelho excluiTarefaAluno">Limpar</button>
@@ -94,13 +98,13 @@
       <label>Descrição da Tarefa: </label>                             
       <!-- <input type="text" class="formulario1" id="tarefaTurmaDescricao"> -->
       <textarea id="tarefaTurmaDescricao" class="formulario1"
-          rows="2" cols="33">
+          rows="3" cols="33">
       </textarea>
      
       <label>Observação: </label>                             
       <!-- <input type="text" class="formulario1" id="tarefaTurmaObs"> -->
       <textarea id="tarefaTurmaObs" class="formulario1"
-          rows="2" cols="33">
+          rows="3" cols="33">
       </textarea>
      
       <div class="alinhaLinha">
@@ -113,7 +117,7 @@
     </div>
   </div>
   <!-- --------------------------------------------------------------- -->
- 
+</div>
 
   <script>
     //--------------------------------------------------------------------------
@@ -200,7 +204,9 @@
       if (textox.match("Entregue")) {
         document.getElementById("dataTarefaAluno").value =" Não Entregou ";
         document.getElementById("conceitoTarefaAluno").value ="";
+        document.getElementById("tarefaObsAluno").value ="";
       } else {
+        buscaTarefaAluno(entregaId);
         document.getElementById("dataTarefaAluno").value = toDate(textox.substr(0,10));
         document.getElementById("conceitoTarefaAluno").value = textox.substr(13,2).trim();
         console.log("-",textox.substr(13,2).trim(),"-");
@@ -225,11 +231,15 @@
       $('.editaAlteraTarefaAluno').on('click',function(){
         var dataentrega = document.getElementById("dataTarefaAluno").value;
         var conceito = parseInt(document.getElementById("conceitoTarefaAluno").value, 10);
+        var obsTarefaAluno = document.getElementById("tarefaObsAluno").value;
         var url = '/tarefaAluno';
         let grava = true;
-        if ( isNaN(conceito) || conceito <=0 || conceito > 10) {
-          alert("conceito inválido " + conceito);
-          grava = false;
+        // if ( isNaN(conceito) || conceito <=0 || conceito > 10) {
+        //   alert("conceito inválido " + conceito);
+        //   grava = false;
+        // }
+        if ( isNaN(conceito)) {
+          conceito = 0;
         }
         if (grava) {
           if (entregaId != 0) {
@@ -239,7 +249,7 @@
             url: url, //selecionando o endereço que iremos acessar no backend
             type: 'POST', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
             dataType: "json",//Tipo de dado que será enviado ao servidor
-            data: {"obs":"pelo sistema", "dataEntrega":dataentrega,"conceito":conceito,"idAluno":alunoId,"idTarefa":tarefaIdAluno}, // { itens: [ { dataEntrega: '1920-02-02', obs: 'CONSEGUI' } ] }
+            data: {"obs":obsTarefaAluno, "dataEntrega":dataentrega,"conceito":conceito,"idAluno":alunoId,"idTarefa":tarefaIdAluno}, // { itens: [ { dataEntrega: '1920-02-02', obs: 'CONSEGUI' } ] }
             error: function(err){
               //Em caso de erro
               console.log(err);
@@ -276,6 +286,31 @@
       });
     });
     // -------------------------------------------------------------------------
+
+    // -------------------------------------------------------------------------
+    // Função para buscar os dados de uma tarefa entregue por um aluno
+    //
+    function buscaTarefaAluno(idTarefaBusca){
+      var url = '/tarefaAluno/' + idTarefaBusca;
+      $.ajax({
+        url: url, //selecionando o endereço que ira acessar no backend
+        type: 'GET', //selecionando o tipo de requesição, PUT,GET,POST,DELETE
+        dataType: "json",//Tipo de dado que será enviado ao servidor
+        error: function(err){
+         //Em caso de erro
+          console.log(err);
+          return false;
+        }
+      }).done(function(tarefaAlunoVer){
+        var obsx = tarefaAlunoVer[0].obs;
+        document.getElementById("tarefaObsAluno").value = obsx;
+        return obsx;
+      });
+      //alert("sai");
+    }
+    // -------------------------------------------------------------------------
+
+
 // FUNÇÕES PARA TAREFAS ENTREGUES POR ALUNOS - FIM -
 //==============================================================================
 

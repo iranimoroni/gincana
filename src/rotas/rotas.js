@@ -30,6 +30,7 @@ rotas.get("/turmas", ctTurma.listaTurma);
 rotas.post("/turmas", ctTurma.gravaTurma);
 
 rotas.get("/tarefasAlunos/:id", ctTarefaAluno.listaTarefasAlunos);
+rotas.get("/tarefaAluno/:id", ctTarefaAluno.buscaTarefaAluno);
 rotas.post("/tarefaAluno", ctTarefaAluno.tarefaAlunoNova);
 rotas.post("/tarefaAluno/:id", ctTarefaAluno.tarefaAlunoEdita);
 rotas.delete("/tarefaAluno/:id", ctTarefaAluno.tarefaAlunoExclui);
