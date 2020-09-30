@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #6cda87;
+  background-color: #6c9fda;
 }
 
 a {
@@ -11,19 +11,28 @@ a {
   table {
     border-collapse: collapse;
     width: 90%;
-    padding: 10px;
-    margin: 30px;
+    padding: 8px;
+    margin-top: 10px;
+	margin-left: 30px;
   }
   th, td {
-    padding: 0.25rem;
+    padding: 0.15rem;
     text-align: left;
     border: 1px solid #ccc;
   }
   tbody tr:nth-child(odd) {
-    background: #eee;
+    background: rgb(196, 233, 235);
   }
     
 /* -------------- Listagem de alunos e tarefas por turma ---------------- */
+.tabelaAlunos{
+	border-radius:16px;
+	padding: 10px;
+	font-weight: bolder;
+	font: 12px "Arial Rounded MT Bold", Helvetica, Arial, sans-serif;
+	background-color: #497da7;
+}
+
 .tabelaAlunoTarefas{
 	border-radius:16px;
 	padding: 10px;
