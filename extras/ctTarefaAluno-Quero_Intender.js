@@ -78,7 +78,7 @@ module.exports = {
                 };
                 totalNotas = parseFloat(totalNotas.toFixed(1)); // converte em float e fixa 1 casa decimal
                 
-                var tarefasInicio = '<tr id="linAl' + alunos[i1].id.toString().padStart(5, '0') + '" class=" linhaaluno '+ tarefaLinha + '">' 
+                var tarefasInicio = '<tr onclick="marcaLinha('+ alunos[i1].id.toString().padStart(5, '0') +')" id="linAl' + alunos[i1].id.toString().padStart(5, '0') + '" class=" linhaaluno '+ tarefaLinha + '">' 
                 + '<td class="alunoNr" id="idANr' + alunos[i1].id.toString().padStart(5, '0') + '">'
                 + alunos[i1].numero.toString().padStart(2, '0') +'</td>' 
                 + '<td class="alunoNm colunaFixa" id="idANm' + alunos[i1].id.toString().padStart(5, '0') + '">'

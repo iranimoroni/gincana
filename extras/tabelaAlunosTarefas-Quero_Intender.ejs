@@ -25,7 +25,6 @@
   <div class="alinhaEsquerda">
     <div class="textoTopo1 alinhaEsquerda"><%- turmaTarefas %></div>
     <div class="alinhaDireita">
-      <button class="btLongoBase btVerde" id="idAlunoEditando">Selecionando: </button>
       <button id="btNovaTarefa" class="btPqBase btLaranja" 
       onclick="abreTarefaNova()">Nova Tarefa</button>
       <button id="btNovaTarefa" class="btPqBase btAzul" 
@@ -160,11 +159,19 @@
     }
     // -------------------------------------------------------------------------
     
+     function marcaxxLinha(linhaDoAluno){
+       alert(linhaDoAluno)
+    //   var idLinha = "linAl" + linhax.toString().padStart(5, '0');
+    //   alert(linhax + " -> " + idLinha);
+    //   document.getElementById(idLinha).classList.add('linhaAlunoMarca');
+    }
+    
     // // -------------------------------------------------------------------------
     // // Função para incluir o evento onClick em todas as linhas
     // //                                                                   (aluno)
     // const linhaalu = document.querySelectorAll('.linhaaluno');
     // for (var i = 0; i < linhaalu.length; i++) {
+    //   linhaalu[i].classList.remove('linhaAlunoMarca'); // para adicionar outras classes
     //   linhaalu[i].addEventListener("click",(e) => {
     //     //alert("oi");
     //     e.target.classList.add('linhaAlunoMarca'); // para adicionar outras classes
@@ -174,11 +181,6 @@
     // }
     // // -------------------------------------------------------------------------
 
-    $(".linhaaluno").mouseover(function () {
-      var thDescricao = $(this).find(".alunoNm");
-      var descricao = thDescricao.text();
-      document.getElementById("idAlunoEditando").innerText = descricao;
-    });
 
     // // -------------------------------------------------------------------------
     // // Função para retornar a tela inicial
