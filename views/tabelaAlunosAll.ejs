@@ -12,8 +12,9 @@
 </head>
 
   <body class="tabelaAlunos">
-    <h1 id="topoAluno">Consulta Aluno</h1>
-    <div class="alinhaEsquerda">
+    <h1 id="topoAluno">Consulta Aluno</h1> 
+    <h1 class="textoTopo1"> <%= parametroBuscado %> ..... Total encontrado = <%= totalAlunos %></h1>
+    <div class="alinhaEsquerda textoTopo1">
       Parte do nome: <input type="text" class="formulario2" id="buscaAlunoNome">
       <button id="btBuscaAluno" class="btPqBase btAzul" onclick="buscaAluno()">Buscar</button>
       <button id="btVolta" class="btPqBase btLaranja" onclick="window.location.href = '/'">Voltar</button>

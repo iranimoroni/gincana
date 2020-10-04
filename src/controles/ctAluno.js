@@ -18,10 +18,13 @@ module.exports = {
     async listaAlunos(req, res) {
         try {
             const alunos = await Aluno.findAll({
-                raw: true,
+                raw: true, order: [["nome"]]
             });
+            var busca = "Todos os alunos"
             return res.render('tabelaAlunosAll', {
                 dadosDosAlunos: alunos,
+                totalAlunos: alunos.length,
+                parametroBuscado: busca,
             });
         } catch (error) {
             console.log("alunos NAO listados");
@@ -33,9 +36,12 @@ module.exports = {
     async listaAlunosNome(req, res) {
         try {
             let busca = '%'+ req.params.id + '%';
-            const alunos = await Aluno.findAll({ raw: true, where: { nome: { [Op.like]: busca } } });
+            const alunos = await Aluno.findAll({ raw: true, order: [["nome"]], where: { nome: { [Op.like]: busca } } });
+            var paramBusca = "Nomes contendo: [" + req.params.id + "]"
             return res.render('tabelaAlunosAll', {
                 dadosDosAlunos: alunos,
+                totalAlunos: alunos.length,
+                parametroBuscado: paramBusca,
             });
         } catch (error) {
             console.log("alunos NAO listados");
