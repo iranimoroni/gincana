@@ -32,6 +32,26 @@ a {
     background: rgb(196, 233, 235);
   }
 
+   
+   li.btTurmaBase span{display: none
+	}
+   
+	li.btTurmaBase:hover span{ 
+	border-radius:6px;
+	display:block;
+	position:absolute;
+	/* 
+	width:210px; 
+	top:20px;
+	left:0;
+	*/
+	font-size: 12px;
+	padding:5px;
+	border:1px solid #999;
+	background:#e0ffff; 
+	color:#000;
+	}
+
 .colunaFixa{
 /*
 	left: 10px;
