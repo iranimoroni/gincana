@@ -220,11 +220,12 @@ module.exports = {
                     esteAluno = Object.values(geralTarefas[i]).toString();
                     campo = esteAluno.split(",");
                     console.log(esteAluno)
-                    if ((turmaX != "") & (turmaX != campo[5]) ){
+                     if ((turmaX != "") & (turmaX != campo[5]) ){
                         turmaX = campo[5];
                         linhaTabelaGeral = linhaTabelaGeral +
 '{"nome":"------------------------------","numero":"--","turma":"------","total":"--","tarefas":0}';
-                    } else {
+                        i--; 
+                     } else {
                         if (turmaX =="") {turmaX = campo[5]}
                         linhaTabelaGeral = linhaTabelaGeral +
                                         '{"nome":"'+campo[3]+

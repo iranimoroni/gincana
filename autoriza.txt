@@ -1,0 +1,9 @@
+ vscode://vscode.github-authentication/did-authenticate?windowid=1&code=34eb3c0768931080a2a1&state=6be539ba-61c6-441f-b412-8a516efba9fb 
+
+
+
+UPDATE `escola04gin`.`tarefas` SET `dataPedida` = '2020-10-22' WHERE (dataPedida = "2020-10-21")
+
+UPDATE `escola04gin`.`tarefas` SET `habilidade` = '**' WHERE (`dataPedida` = '2020-10-22');
+
+UPDATE `escola04gin`.`tarefas` SET `habilidade` = '**' WHERE (`dataPedida` = '2020-10-22');
