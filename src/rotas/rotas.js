@@ -29,6 +29,7 @@ rotas.post("/aulas", ctAula.gravaAula);
 rotas.get("/turmas", ctTurma.listaTurma);
 rotas.post("/turmas", ctTurma.gravaTurma);
 
+rotas.get("/geral", ctTarefaAluno.tarefasGeral);
 rotas.get("/tarefasAlunos/:id", ctTarefaAluno.listaTarefasAlunos);
 rotas.get("/tarefaAluno/:id", ctTarefaAluno.buscaTarefaAluno);
 rotas.post("/tarefaAluno", ctTarefaAluno.tarefaAlunoNova);

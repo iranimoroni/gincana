@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alunos</title>
+
+  <link rel='stylesheet' href="../public/stylesheets/style.css" />
+  <link rel='stylesheet' href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+  <script src="/public/javascripts/jquery-3.5.1.min.js"></script>   
+    
+</head>
+    <body>
+        <div class="alinhaDireita">
+            <button id="btVoltaAoInicio" class="btPqBase btAzul" 
+            onclick= "window.location.href = '/'">Turmas</button>
+            <button id="btnImprimir" class="btPqBase btVermelho" 
+            onclick="CriaPDF()">Relatorio</button>
+        </div>
+    <div class="tabelaGeral" id="tabelaGeral">
+        <div class="alinhaEsquerda">
+            <div class="textoTopo2">
+                Listagem Geral de Participantes Pontuados 
+            </div>
+          </div>
+                  
+        
+        <div class="textoTopo3">Total de Alunos com alguma participação na Gincana = <%= totalDeAlunosNaGincana %></div>
+        <table class="zebra" >
+          <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Numero</th>
+                  <th>Turma</th>
+                  <th>Soma de Pontos</th>
+                  <th>Tarefas Entregues</th>
+                  <th>Média por tarefa</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+          <% for(let item of dadosGerais) { %>
+              <tr>
+                <td><%= item.nome %></td>
+                <td><%= item.numero %></td>
+                <td><%= item.turma %></td>
+                <td><%= item.total %></td>
+                <td><%= item.tarefas %></td>                
+                <td><%if (item.tarefas > 0) { %>
+                    <%=(item.total/item.tarefas).toFixed(2) %>
+                    <% } %>
+                </td>
+              </tr>
+          <% } %>
+          </tbody>
+      </table>
+<script>    
+      function CriaPDF() {
+        var minhaTabela = document.getElementById('tabelaGeral').innerHTML;
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 9px Arial Narrow;}";
+        style = style + "table, th, td {border: solid 1px #000; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + ".alunoNm {border: solid 1px #000; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: Left;	min-width: 180px !important; }"
+        style = style + ".dataTarefaTurma {text-align: Left;	min-width: 60px !important; }"
+        style = style + "</style>";
+        // CRIA UM OBJETO WINDOW
+        var win = window.open('', '', 'height=700,width=700');
+        win.document.write('<html><head>');
+        win.document.write('<title>Listagem Geral de Participantes Pontuados</title>');   // <title> CABEÇALHO DO PDF.
+        win.document.write(style);                                     // INCLUI UM ESTILO NA TAB HEAD
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(minhaTabela);                          // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+        win.document.write('</body></html>');
+        win.document.close(); 	                                         // FECHA A JANELA
+        win.print();                                                            // IMPRIME O CONTEUDO
+    }
+  </script>
+    
+</div>
+</body>
+
+</html>
+
+
+
+
