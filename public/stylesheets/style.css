@@ -344,6 +344,19 @@ a {
 	background-color:#ce0100;
 }
 
+.btAmarelo {
+	box-shadow:inset 0px 1px 0px 0px #f2ec93;
+	background:linear-gradient(to bottom, #ffff00 5%, #ffd700 100%);
+	background-color:#feed00;
+	border:2px solid #B8860B;
+	color:#333333;
+	text-shadow:0px 1px 0px #b2a535;
+}
+.btAmarelo:hover {
+	background:linear-gradient(to bottom, #ffd700 5%, #ffff00 100%);
+	background-color:#feed00;
+}
+
 .btVerde {
 	box-shadow:inset 0px 1px 0px 0px #caefab;
 	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);

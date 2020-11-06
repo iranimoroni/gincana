@@ -270,5 +270,55 @@ module.exports = {
         
         return rows;
     },
-          
+    
+    async tarefasTotal(req, res){
+        try{
+            const geralTarefasTT = await TarefaAluno.findAll({
+                attributes: ['idAluno', 
+                    [sequelize.fn('sum', sequelize.col('conceito')), 'total'],
+                    [sequelize.fn('count', sequelize.col('idAluno')), 'tarefas']],
+                    group : ['TarefaAluno.idAluno'],
+                    raw: true,
+                    include:[{ model: Aluno,
+                              required: true,
+                              attributes: ['nome','numero','turma']}],
+                    order: sequelize.literal('total DESC')
+                });
+                var esteAluno = "";
+                var campo = "";
+                var linhaTabelaGeral = "";
+                for (var i = 0; i < (geralTarefasTT.length); i++) {
+                    esteAluno = Object.values(geralTarefasTT[i]).toString();
+                    campo = esteAluno.split(",");
+                    linhaTabelaGeral = linhaTabelaGeral +
+                                    '{"nome":"'+campo[3]+
+                                    '","numero":'+campo[4]+
+                                    ',"turma":"'+campo[5]+
+                                    '","total":'+campo[1]+
+                                    ',"tarefas":'+campo[2]+
+                                    '}';
+                    
+                    if (i < ((geralTarefasTT.length)-1)){
+                        linhaTabelaGeral = linhaTabelaGeral + ',' 
+                    }     
+                }                                   
+                linhaTabelaGeral = '[' + linhaTabelaGeral + ']';
+            return res.render('tabelaGeral', {
+                //dadosGerais: JSON.stringify(geralTarefas),
+                dadosGerais: JSON.parse(linhaTabelaGeral),
+                totalDeAlunosNaGincana: geralTarefasTT.length,
+            });
+                
+            //  return res.json(geralTarefas);
+            //const geralTarefas = await conect.query('SELECT idAluno, SUM(conceito) AS notaTotal, count(idAluno) as traluno FROM tarefaAluno GROUP BY idAluno ORDER BY notaTotal DESC;');
+            //console.log(geralTarefas);
+        } catch (error) {
+            console.log("Listagem não feita");
+            console.log(error);
+            return res.json("Erro ao listar tarefas");
+        };
+        
+        return rows;
+    },
+      
 };
