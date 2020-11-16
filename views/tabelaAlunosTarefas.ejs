@@ -232,6 +232,8 @@
 
       document.getElementById("alunoTarefa").innerText = document.getElementById(alunoidElement).innerText
       document.getElementById("dataTarefa").innerText = document.getElementById(tarefaDataElement).innerText
+      console.log("@@@  ",textox, " @@@");
+      
       if (textox.match("Entregue")) {
         document.getElementById("dataTarefaAluno").value =" Não Entregou ";
         document.getElementById("conceitoTarefaAluno").value ="";
@@ -239,7 +241,7 @@
       } else {
         buscaTarefaAluno(entregaId);
         document.getElementById("dataTarefaAluno").value = toDate(textox.substr(0,10));
-        document.getElementById("conceitoTarefaAluno").value = textox.substr(13,3).trim();
+        document.getElementById("conceitoTarefaAluno").value = textox.substr(13,2).trim();
         console.log("-",textox.substr(13,2).trim(),"-");
 //        document.getElementById("conceitoTarefaAluno").value = textox.substr(13,2);
       }
