@@ -1,9 +1,0 @@
-$ git config user.name "iranimoroni"
-$ git config user.email iranimoroni@gmail.com
-
-$ git config --global user.name "Fulano de Tal"
-$ git config --global user.email fulanodetal@exemplo.pt
-
-credenciais no Windows
-
-Painel de Controle\Todos os Itens do Painel de Controle\Gerenciador de Credenciais
