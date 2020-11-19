@@ -19,8 +19,12 @@ const rotas = express.Router();
 
 rotas.get("/alunos", ctAluno.listaAlunos);
 rotas.get("/alunos/:id", ctAluno.listaAlunosNome);
-rotas.get("/turma/:id", ctAluno.listaAlunosTurma);
-rotas.get("/aluno/:id", ctAluno.listaNumero);
+
+rotas.get("/app/alunos", ctAluno.applistaAlunos);
+rotas.get("/app/alunos/:id", ctAluno.applistaAlunosNome);
+
+//rotas.get("/turma/:id", ctAluno.listaAlunosTurma);
+//rotas.get("/aluno/:id", ctAluno.listaNumero);
 rotas.post("/aluno", ctAluno.gravaAluno);
 
 rotas.get("/aulas", ctAula.listaAula);
@@ -48,6 +52,13 @@ rotas.get("/habilidades/descricao/:id", ctCurriculo.buscaCurriculoDesc);
 rotas.get("/habilidades/codigo/:id", ctCurriculo.buscaCurriculoCod);
 rotas.get("/habilidades/linguagem/:id", ctCurriculo.buscaCurriculoLing);
 rotas.get("/habilidades/conhecimento/:id", ctCurriculo.buscaCurriculoConhec);
+
+rotas.get("/app/habilidades/", ctCurriculo.applistaCurriculo);
+rotas.get("/app/habilidades/descricao/:id", ctCurriculo.appbuscaCurriculoDesc);
+rotas.get("/app/habilidades/codigo/:id", ctCurriculo.appbuscaCurriculoCod);
+rotas.get("/app/habilidades/linguagem/:id", ctCurriculo.appbuscaCurriculoLing);
+rotas.get("/app/habilidades/conhecimento/:id", ctCurriculo.appbuscaCurriculoConhec);
+
 
 
 rotas.get("/", (req, res) => {res.render('turmas')});

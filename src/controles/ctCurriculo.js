@@ -102,5 +102,68 @@ module.exports = {
             console.log(error);
             return res.json("Erro ao gravar curriculo");
         };
-    }
+    },
+    
+    ///===================================================================
+    
+    async applistaCurriculo(req, res) {
+        try {
+            var curriculox = await Curriculo.findAll({ raw: true });
+            return res.json(curriculox);
+        } catch (error) {
+            console.log("Curriculo NAO listado");
+            console.log(error);
+            return res.json("Erro ao listar curriculo");
+        }
+    },
+
+    async appbuscaCurriculoDesc(req, res) {
+        let busca = '%'+ req.params.id + '%';
+        try {
+            var curriculox = await Curriculo.findAll({ raw: true, where: { habilidadeDesc: { [Op.like]: busca } } });
+            return res.json(curriculox);
+        } catch (error) {
+            console.log("Curriculo NAO listado");
+            console.log(error);
+            return res.json("Erro ao listar curriculo");
+        }
+    },
+
+    async appbuscaCurriculoCod(req, res) {
+        let busca = '%'+ req.params.id + '%';
+        try {
+            var curriculox = await Curriculo.findAll({ raw: true, where: { habilidadeCod: { [Op.like]: busca } } });
+            return res.json(curriculox);
+        } catch (error) {
+            console.log("Curriculo NAO listado");
+            console.log(error);
+            return res.json("Erro ao listar curriculo");
+        }
+    },
+
+    async appbuscaCurriculoLing(req, res) {
+        let busca = '%'+ req.params.id + '%';
+        try {
+            var curriculox = await Curriculo.findAll({ raw: true, where: { linguagem: { [Op.like]: busca } } });
+            return res.json(curriculox);
+        } catch (error) {
+            console.log("Curriculo NAO listado");
+            console.log(error);
+            return res.json("Erro ao listar curriculo");
+        }
+    },
+
+    async appbuscaCurriculoConhec(req, res) {
+        let busca = '%'+ req.params.id + '%';
+        try {
+            var curriculox = await Curriculo.findAll({ raw: true, where: { conhecimento: { [Op.like]: busca } } });
+            return res.json(curriculox);
+        } catch (error) {
+            console.log("Curriculo NAO listado");
+            console.log(error);
+            return res.json("Erro ao listar curriculo");
+        }
+    },
+    
+    
 };

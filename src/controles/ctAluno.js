@@ -50,58 +50,58 @@ module.exports = {
         }
     },
 
-    async listaAlunosTurma(req, res) {
-        try {
-            let busca = req.params.id;
-            const alunos = await Aluno.findAll({
-                raw: true,
-                where: {
-                    idTurma: busca
-                }
-            });
+    // async listaAlunosTurma(req, res) {
+    //     try {
+    //         let busca = req.params.id;
+    //         const alunos = await Aluno.findAll({
+    //             raw: true,
+    //             where: {
+    //                 idTurma: busca
+    //             }
+    //         });
 
-            //const tarefas = await TarefaDia.findAll({where:{idAluno: busca}});
-            const tarefas = await TarefaAluno.findAll();
+    //         //const tarefas = await TarefaDia.findAll({where:{idAluno: busca}});
+    //         const tarefas = await TarefaAluno.findAll();
 
-            return res.render('tabelaAlunos2', {
-                dadosDosAlunos: alunos,
-                dadosDasTarefas: tarefas,
-                btt: "%><h1>teste</h1><%"
-            });
-        } catch (error) {
-            console.log("alunos NAO listados");
-            console.log(error);
-            return res.json("Erro ao listar alunos");
-        }
-    },
+    //         return res.render('tabelaAlunos2', {
+    //             dadosDosAlunos: alunos,
+    //             dadosDasTarefas: tarefas,
+    //             btt: "%><h1>teste</h1><%"
+    //         });
+    //     } catch (error) {
+    //         console.log("alunos NAO listados");
+    //         console.log(error);
+    //         return res.json("Erro ao listar alunos");
+    //     }
+    // },
 
-    async listaNumero(req, res) {
-        try {
-            let busca = req.params.id;
-            // erro -> const alunos = await TarefaDia.findAll({raw: true, attributes: ["idAluno","dataPedida"], include: [Aluno.findAll({raw: true, attributes: ["id","nome","numero","idTurma"]})], order: [["dataPedida"]]});
-            const alunos = await TarefaAluno.findAll({
-                raw: true,
-                attributes: ["idAluno", "dataPedida"],
-                include: [Aluno],
-                order: [
-                    ["idAluno"],
-                    ["dataPedida"]
-                ]
-            });
-            //const alunos = await TarefaDia.findAll({raw: true, include: [Aluno], order: [["dataPedida"]]});
+    // async listaNumero(req, res) {
+    //     try {
+    //         let busca = req.params.id;
+    //         // erro -> const alunos = await TarefaDia.findAll({raw: true, attributes: ["idAluno","dataPedida"], include: [Aluno.findAll({raw: true, attributes: ["id","nome","numero","idTurma"]})], order: [["dataPedida"]]});
+    //         const alunos = await TarefaAluno.findAll({
+    //             raw: true,
+    //             attributes: ["idAluno", "dataPedida"],
+    //             include: [Aluno],
+    //             order: [
+    //                 ["idAluno"],
+    //                 ["dataPedida"]
+    //             ]
+    //         });
+    //         //const alunos = await TarefaDia.findAll({raw: true, include: [Aluno], order: [["dataPedida"]]});
 
 
-            console.log("LISTEI por NUMERO DO ALUNO");
-            console.log(req.params.id);
-            let listaAlunos = res.json(alunos);
-            return listaAlunos;
-            //return res.render('tabelaAlunos', {dadosDosAlunos: alunos });
-        } catch (error) {
-            console.log("alunos NAO listados");
-            console.log(error);
-            return res.json("Erro ao listar alunos");
-        }
-    },
+    //         console.log("LISTEI por NUMERO DO ALUNO");
+    //         console.log(req.params.id);
+    //         let listaAlunos = res.json(alunos);
+    //         return listaAlunos;
+    //         //return res.render('tabelaAlunos', {dadosDosAlunos: alunos });
+    //     } catch (error) {
+    //         console.log("alunos NAO listados");
+    //         console.log(error);
+    //         return res.json("Erro ao listar alunos");
+    //     }
+    // },
 
     async gravaAluno(req, res) {
         try {
@@ -128,5 +128,57 @@ module.exports = {
             return res.json("Erro ao gravar aluno");
         };
     }
+        //======================================================================
+    async applistaAlunos(req, res) {
+        try {
+            const alunos = await Aluno.findAll({
+                raw: true, order: [["nome"]]
+            });
+            var busca = "Todos os alunos"
+            return res.json(alunos);
+        } catch (error) {
+            console.log("alunos NAO listados");
+            console.log(error);
+            return res.json("Erro ao listar alunos");
+        }
+    },
+    async applistaAlunosNome(req, res) {
+        try {
+            let busca = '%'+ req.params.id + '%';
+            const alunos = await Aluno.findAll({ raw: true, order: [["nome"]], where: { nome: { [Op.like]: busca } } });
+            return res.json(alunos);
+        } catch (error) {
+            console.log("alunos NAO listados");
+            console.log(error);
+            return res.json("Erro ao listar alunos");
+        }
+    },
+
+    //======================================================================
+    async applistaAlunos(req, res) {
+        try {
+            const alunos = await Aluno.findAll({
+                raw: true, order: [["nome"]]
+            });
+            var busca = "Todos os alunos"
+            return res.json(alunos);
+        } catch (error) {
+            console.log("alunos NAO listados");
+            console.log(error);
+            return res.json("Erro ao listar alunos");
+        }
+    },
+    async applistaAlunosNome(req, res) {
+        try {
+            let busca = '%'+ req.params.id + '%';
+            const alunos = await Aluno.findAll({ raw: true, order: [["nome"]], where: { nome: { [Op.like]: busca } } });
+            return res.json(alunos);
+        } catch (error) {
+            console.log("alunos NAO listados");
+            console.log(error);
+            return res.json("Erro ao listar alunos");
+        }
+    },
+  
 };
 
