@@ -127,7 +127,7 @@ module.exports = {
             console.log(error);
             return res.json("Erro ao gravar aluno");
         };
-    }
+    },
         //======================================================================
     async applistaAlunos(req, res) {
         try {
