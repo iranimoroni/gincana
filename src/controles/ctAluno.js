@@ -180,5 +180,25 @@ module.exports = {
         }
     },
   
+    async appListaAlunosTurma(req, res) {
+        try {
+            let busca = req.params.id;
+            const alunosTurma = await Aluno.findAll({
+                raw: true,
+                where: {
+                    idTurma: busca
+                }
+            });
+            return res.json(alunosTurma);
+            
+        } catch (error) {
+            console.log("alunos NAO listados");
+            console.log(error);
+            return res.json("Erro ao listar alunos");
+        }
+    },
+
+  
+  
 };
 

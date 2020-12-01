@@ -267,9 +267,8 @@ module.exports = {
             console.log(error);
             return res.json("Erro ao listar tarefas");
         };
-        
-        return rows;
     },
+    
     
     async tarefasTotal(req, res){
         try{
@@ -320,5 +319,103 @@ module.exports = {
         
         return rows;
     },
+    
+    
+    //===========================================================================
+
+async appTarefasGeral(req, res){
+    try{
+        const appGeralTarefas = await TarefaAluno.findAll({
+            attributes: ['idAluno', 
+                [sequelize.fn('sum', sequelize.col('conceito')), 'total'],
+                [sequelize.fn('count', sequelize.col('idAluno')), 'tarefas']],
+                group : ['TarefaAluno.idAluno'],
+                raw: true,
+                include:[{ model: Aluno,
+                          required: true,
+                          attributes: ['nome','numero','turma']}],
+                order: sequelize.literal('turma, total DESC')
+            });
+            var esteAluno = "";
+            var campo = "";
+            var linhaTabelaGeral = "";
+            var turmaX = "";
+            for (var i = 0; i < (appGeralTarefas.length); i++) {
+                esteAluno = Object.values(appGeralTarefas[i]).toString();
+                campo = esteAluno.split(",");
+                //console.log(esteAluno)
+                 if ((turmaX != "") & (turmaX != campo[5]) ){
+                    turmaX = campo[5];
+                    linhaTabelaGeral = linhaTabelaGeral +
+'{"nome":"------------------------------","numero":"--","turma":"------","total":"--","tarefas":0}';
+                    i--; 
+                 } else {
+                    if (turmaX =="") {turmaX = campo[5]}
+                    linhaTabelaGeral = linhaTabelaGeral +
+                                    '{"nome":"'+campo[3]+
+                                    '","numero":'+campo[4]+
+                                    ',"turma":"'+campo[5]+
+                                    '","total":'+campo[1]+
+                                    ',"tarefas":'+campo[2]+
+                                    '}';
+                }
+                if (i < ((appGeralTarefas.length)-1)){
+                    linhaTabelaGeral = linhaTabelaGeral + ',' 
+                }                                    
+            }
+            linhaTabelaGeral = '[' + linhaTabelaGeral + ']';
+            return res.json(JSON.parse(linhaTabelaGeral));
+    } catch (error) {
+        console.log("Listagem não feita");
+        console.log(error);
+        return res.json("Erro ao listar tarefas");
+    };
+},
+
+async appTarefasTurma(req, res){
+    let busca = req.params.id;
+    try{
+        const appTurmaTarefas = await TarefaAluno.findAll({
+            attributes: ['idAluno', 
+                [sequelize.fn('sum', sequelize.col('conceito')), 'total'],
+                [sequelize.fn('count', sequelize.col('idAluno')), 'tarefas']],
+                group : ['TarefaAluno.idAluno'],
+                raw: true,
+                include:[{ model: Aluno,
+                          required: true,
+                          where: {idTurma: busca},
+                          attributes: ['nome','numero','turma']}],
+                order: sequelize.literal('turma, total DESC')
+            });
+            var esteAluno = "";
+            var campo = "";
+            var linhaTabelaGeral = "";
+            var turmaX = "";
+            for (var i = 0; i < (appTurmaTarefas.length); i++) {
+                esteAluno = Object.values(appTurmaTarefas[i]).toString();
+                campo = esteAluno.split(",");
+                    linhaTabelaGeral = linhaTabelaGeral +
+                                    '{"nome":"'+campo[3]+
+                                    '","numero":'+campo[4]+
+                                    ',"turma":"'+campo[5]+
+                                    '","total":'+campo[1]+
+                                    ',"tarefas":'+campo[2]+
+                                    '}';
+                
+                if (i < ((appTurmaTarefas.length)-1)){
+                    linhaTabelaGeral = linhaTabelaGeral + ',' 
+                }                                    
+            }
+            linhaTabelaGeral = '[' + linhaTabelaGeral + ']';
+            return res.json(JSON.parse(linhaTabelaGeral));
+    } catch (error) {
+        console.log("Listagem não feita");
+        console.log(error);
+        return res.json("Erro ao listar tarefas");
+    };
+},
+
+//===========================================================================
+
       
 };

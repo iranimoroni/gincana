@@ -22,6 +22,7 @@ rotas.get("/alunos/:id", ctAluno.listaAlunosNome);
 
 rotas.get("/app/alunos", ctAluno.applistaAlunos);
 rotas.get("/app/alunos/:id", ctAluno.applistaAlunosNome);
+rotas.get("/app/alunosTurma/:id", ctAluno.appListaAlunosTurma);
 
 //rotas.get("/turma/:id", ctAluno.listaAlunosTurma);
 //rotas.get("/aluno/:id", ctAluno.listaNumero);
@@ -40,6 +41,10 @@ rotas.get("/tarefaAluno/:id", ctTarefaAluno.buscaTarefaAluno);
 rotas.post("/tarefaAluno", ctTarefaAluno.tarefaAlunoNova);
 rotas.post("/tarefaAluno/:id", ctTarefaAluno.tarefaAlunoEdita);
 rotas.delete("/tarefaAluno/:id", ctTarefaAluno.tarefaAlunoExclui);
+
+rotas.get("/app/geral", ctTarefaAluno.appTarefasGeral);
+rotas.get("/app/geral/:id", ctTarefaAluno.appTarefasTurma);
+
 
 rotas.get("/tarefas/", ctTarefa.tarefasLista);
 rotas.get("/tarefa/:id", ctTarefa.tarefaMostra);

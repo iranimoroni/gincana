@@ -17,6 +17,14 @@ module.exports = {
 //      database: 'teste001',
 ////=== === === === === === === ===  
   
+// // //// ===  configuração Heroku  ===
+//     host: 'us-cdbr-east-02.cleardb.com',
+//     port: 3306,
+//     username: 'be341a757b563c',
+//     password: 'aa85cdd0',
+//     database: 'heroku_428abe55ec2ef5b',
+// // ////=== === === === === === === ===  
+
 // //// ===  configuração Umbler  ===
       host: 'mysql741.umbler.com',
       port: 41890,
